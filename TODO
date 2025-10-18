@@ -1,0 +1,33 @@
+
+
+
+
+
+models
+Problem
+name, difficulty, description
+
+
+Example
+input, output, explanation
+
+
+User
+first_name, last_name, username, email, password
+
+
+# homework
+1. Tag modeli yozish
+2. register, login apilarini chiqarish
+3. get-me apisini chiqarish
+4. User bilan problemm modelini togrilash
+5. faker
+
+
+
+Features
+flake8, isort, pytest,
+checker - (crun orqali kodlarni run qilish tekshirish)
+
+parse(obj->json)
+validation
