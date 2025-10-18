@@ -31,3 +31,6 @@ checker - (crun orqali kodlarni run qilish tekshirish)
 
 parse(obj->json)
 validation
+
+https://github.com/xolmomin/fastapi_p31
+https://github.com/xolmomin/fastapi_p21
