@@ -2,16 +2,35 @@
 
 
 # homework
-0. alembic async + base modellar yozamiz + (slug)
+0. alembic async + base modellar yozamiz +
 1. Tag modeli yozish +
-2. register (password argon2), login apilarini chiqarish
+2. register (password argon2) + login apilarini chiqarish
 3. get-me apisini chiqarish
-4. User bilan problemm modelini togrilash
+4. User bilan problem modelini togrilash
 5. flake8, isort
 6. faker
+
+
+Homework
+1. login, get-me
+2. User bilan problem modelini togrilash
+3. flake8, isort
+4. problems listda
+pagination (page, page_size)
+name va description boyicha search
+filter tag boyicha
+order by (difficulty)
+
 
 
 
 Features
 flake8, isort, pytest,
 checker - (crun orqali kodlarni run qilish tekshirish)
+
+
+pytest pytest.ini
+alembic alembic.ini
+
+
+venv + pip = poetry < uv

@@ -2,7 +2,7 @@ from datetime import datetime
 
 from slugify import slugify
 from sqlalchemy import DateTime, func, text, BigInteger, delete as sqlalchemy_delete, \
-    update as sqlalchemy_update, select, or_, and_, String, event
+    update as sqlalchemy_update, select, or_, and_, String, event, exists
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, declared_attr, selectinload
@@ -111,6 +111,23 @@ class AbstractClass:
     async def all(cls):
         return (await db.execute(select(cls))).scalars().all()
 
+    @classmethod
+    async def exists(cls, *criteria, **filters):
+        """
+        Check if a record exists that matches given criteria.
+
+        Examples:
+            await User.exists(User.email == "test@example.com")
+            await User.exists(name="Ali")
+        """
+        if filters:
+            dynamic_filters = [getattr(cls, k) == v for k, v in filters.items()]
+            criteria = (*criteria, *dynamic_filters)
+
+        stmt = select(exists().where(and_(*criteria))) if criteria else select(False)
+        result = await db.execute(stmt)
+        return result.scalar()
+
 
 class Base(DeclarativeBase, AbstractClass):
 
@@ -132,14 +149,13 @@ class IDBaseModel(Base):
     id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
 
 
-class SlugBaseModel(Base): # TODO
+class SlugBaseModel(Base):  # TODO
     __abstract__ = True
     slug: Mapped[str] = mapped_column(String(255), unique=True)
 
     @staticmethod
     def make_slug(target, value, oldvalue, initiator):
         target.slug = slugify(value)
-
 
 
 class CreatedBaseModel(Base):

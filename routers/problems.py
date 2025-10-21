@@ -1,15 +1,22 @@
 from fastapi import APIRouter
 from starlette import status
 
-from database import Tag
-from schemas.problems import TagCreateSchema
+from database import Tag, Problem
+from schemas.problems import TagCreateSchema, ProblemCreateSchema
 
 problem_router = APIRouter()
 
 
 @problem_router.get("/problems")
-async def get_users():
-    return {"message": "Problems"}
+async def get_problems():
+    problems = await Problem.all()
+    return {"message": "all problems", "data": problems}
+
+
+@problem_router.post("/problems")
+async def create_problem(data: ProblemCreateSchema):
+    problems = await Problem.create(**data.model_dump(exclude_none=True))
+    return {"message": "all problems", "data": problems}
 
 
 @problem_router.get('/tags')

@@ -17,3 +17,8 @@ dependencies = [
     "sqlalchemy>=2.0.44",
     "uvicorn>=0.37.0",
 ]
+
+[tool.alembic]
+script_location = "%(here)s/migrations"
+version_locations = ["migrations/versions"]
+prepend_sys_path = "."
