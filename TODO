@@ -1,36 +1,17 @@
 
 
 
-
-
-models
-Problem
-name, difficulty, description
-
-
-Example
-input, output, explanation
-
-
-User
-first_name, last_name, username, email, password
-
-
 # homework
-1. Tag modeli yozish
-2. register, login apilarini chiqarish
+0. alembic async + base modellar yozamiz + (slug)
+1. Tag modeli yozish +
+2. register (password argon2), login apilarini chiqarish
 3. get-me apisini chiqarish
 4. User bilan problemm modelini togrilash
-5. faker
+5. flake8, isort
+6. faker
 
 
 
 Features
 flake8, isort, pytest,
 checker - (crun orqali kodlarni run qilish tekshirish)
-
-parse(obj->json)
-validation
-
-https://github.com/xolmomin/fastapi_p31
-https://github.com/xolmomin/fastapi_p21

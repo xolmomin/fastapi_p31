@@ -163,6 +163,7 @@ celerybeat.pid
 env/
 venv/
 .idea
+migrations/versions/*
 ENV/
 env.bak/
 venv.bak/

@@ -1,19 +1,27 @@
-from sqlalchemy import UUID, String, ForeignKey, Integer
+from enum import Enum
+
+from sqlalchemy import UUID, String, ForeignKey, Integer, Enum as SqlEnum
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from database.base_model import CreatedBaseModel, IDBaseModel
 
 
+class Tag(IDBaseModel):
+    name: Mapped[str] = mapped_column(String(255))
+
+
 class Problem(IDBaseModel, CreatedBaseModel):
-    # class Currency(str, Enum):
-    #     EASY = 'easy', 'Easy'
-    #     MEDIUM = 'medium', 'Medium'
-    #     HARD = 'hard', 'Hard'
+    class Difficulty(str, Enum):
+        EASY = 'easy'
+        MEDIUM = 'medium'
+        HARD = 'hard'
 
     name: Mapped[str] = mapped_column(String(255))
     slug: Mapped[str] = mapped_column(String(255), unique=True)  # TODO
 
-    # difficulty: Mapped[str] = mapped_column(SqlEnum(Currency), )
+    difficulty: Mapped[Difficulty] = mapped_column(
+        SqlEnum(Difficulty, name="difficulty_enum"), nullable=False, default=Difficulty.EASY
+    )
     description: Mapped[str] = mapped_column(String)
     examples: Mapped[list['Example']] = relationship('Example', back_populates='problem')
 

@@ -10,6 +10,9 @@ class Settings(BaseSettings):
     POSTGRES_HOST: str = Field(...)
     POSTGRES_PORT: int = Field(...)
 
+    JWT_SECRET_KEY: str = Field(...)
+    JWT_ALGORITHM: str = Field(...)
+
     @property
     def postgresql_url(self) -> str:
         return (
