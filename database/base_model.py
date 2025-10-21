@@ -1,7 +1,8 @@
 from datetime import datetime
 
+from slugify import slugify
 from sqlalchemy import DateTime, func, text, BigInteger, delete as sqlalchemy_delete, \
-    update as sqlalchemy_update, select, or_, and_
+    update as sqlalchemy_update, select, or_, and_, String, event
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, declared_attr, selectinload
@@ -131,18 +132,14 @@ class IDBaseModel(Base):
     id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
 
 
-# class SlugBaseModel(Base): # TODO
-#     __abstract__ = True
-#     slug: Mapped[str] = mapped_column(String(255), unique=True)
-#
-#     @hybrid_property
-#     def slug(self):
-#         return re.sub(r'[^a-z0-9]+', '-', self.name.lower())
-#
-#     @slug.setter
-#     def slug(self, value):
-#         # You might want to handle setting the slug directly if needed
-#         self._slug = value
+class SlugBaseModel(Base): # TODO
+    __abstract__ = True
+    slug: Mapped[str] = mapped_column(String(255), unique=True)
+
+    @staticmethod
+    def make_slug(target, value, oldvalue, initiator):
+        target.slug = slugify(value)
+
 
 
 class CreatedBaseModel(Base):
