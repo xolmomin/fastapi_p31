@@ -9,6 +9,10 @@ class Settings(BaseSettings):
     POSTGRES_HOST: str = Field(...)
     POSTGRES_PORT: int = Field(...)
 
+    SECRET_KEY: str = Field(...)
+    WEB_ADMIN_USERNAME: str = Field(...)
+    WEB_ADMIN_PASSWD: str = Field(...)
+
     JWT_SECRET_KEY: str = Field(...)
     JWT_ALGORITHM: str = Field(...)
     JWT_ACCESS_TOKEN_EXPIRE_TIME: int = Field(...)
