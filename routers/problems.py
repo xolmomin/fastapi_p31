@@ -23,3 +23,8 @@ async def get_all_tags():
 async def create_tags(data: TopicCreateSchema):
     await Topic.create(**data.model_dump(exclude_none=True, exclude_unset=True))
     return {"success": True}
+
+
+
+# connection
+# session

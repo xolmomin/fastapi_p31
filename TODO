@@ -8,29 +8,20 @@
 3. get-me apisini chiqarish +
 4. User bilan problem modelini togrilash +
 5. flake8+, isort+
-6. faker (fixtures)
-7. crud amallari adminka orqali
+6. faker - fixtures [20ta] +
+test fixture - (testing uchun)
+data seed fixture - (initial data)
+region, district
+7. crud amallari adminka orqali +
 8. first_name, last_name change api
-9. universal pagination, search, filter
+9. universal pagination, search, filter, order by
 
 
+# Homework
+1. first_name, last_name change api
+2. data seed fixture (20ta)
+3. api/v1/problemset/two-sum/submit
+a, b = map(int, input().split())
+print(a + b)
 
-4. problems listda
-pagination (page, page_size)
-name va description boyicha search
-filter tag boyicha
-order by (difficulty)
-
-
-
-
-Features
-flake8, isort, pytest,
 checker - (crun orqali kodlarni run qilish tekshirish)
-
-
-pytest pytest.ini
-alembic alembic.ini
-
-
-venv + pip = poetry < uv

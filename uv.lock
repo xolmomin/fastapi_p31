@@ -363,9 +363,9 @@ dependencies = [
     { name = "pydantic-settings" },
     { name = "python-jose" },
     { name = "python-slugify" },
+    { name = "sqladmin" },
     { name = "sqlalchemy" },
     { name = "sqlalchemy-file" },
-    { name = "starlette-admin" },
     { name = "uvicorn" },
 ]
 
@@ -387,9 +387,9 @@ requires-dist = [
     { name = "pydantic-settings", specifier = ">=2.11.0" },
     { name = "python-jose", specifier = ">=3.5.0" },
     { name = "python-slugify", specifier = ">=8.0.4" },
+    { name = "sqladmin", specifier = ">=0.21.0" },
     { name = "sqlalchemy", specifier = ">=2.0.44" },
     { name = "sqlalchemy-file", specifier = ">=0.6.0" },
-    { name = "starlette-admin", specifier = ">=0.15.1" },
     { name = "uvicorn", specifier = ">=0.37.0" },
 ]
 
@@ -779,6 +779,22 @@ wheels = [
 ]
 
 [[package]]
+name = "sqladmin"
+version = "0.21.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "jinja2" },
+    { name = "python-multipart" },
+    { name = "sqlalchemy" },
+    { name = "starlette" },
+    { name = "wtforms" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/5b/0c/614041e1b544e0de1f43b58f0105b3e2795b80369d5b0ff7412882d42fff/sqladmin-0.21.0.tar.gz", hash = "sha256:cb455b79eb79ef7d904680dd83817bf7750675147400b5b7cc401d04bda7ef2c", size = 1428312 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ed/8d/81b2a48cc6f5479cb1148292518e3006ec8f5fbe3b0829ef165984e9d7b9/sqladmin-0.21.0-py3-none-any.whl", hash = "sha256:2b1802c49bdd3128c6452625705693cf32d5d33e7db30e63f409bd20a9c05b53", size = 1443585 },
+]
+
+[[package]]
 name = "sqlalchemy"
 version = "2.0.44"
 source = { registry = "https://pypi.org/simple" }
@@ -822,20 +838,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/a7/a5/d6f429d43394057b67a6b5bbe6eae2f77a6bf7459d961fdb224bf206eee6/starlette-0.48.0.tar.gz", hash = "sha256:7e8cee469a8ab2352911528110ce9088fdc6a37d9876926e73da7ce4aa4c7a46", size = 2652949 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/be/72/2db2f49247d0a18b4f1bb9a5a39a0162869acf235f3a96418363947b3d46/starlette-0.48.0-py3-none-any.whl", hash = "sha256:0764ca97b097582558ecb498132ed0c7d942f233f365b86ba37770e026510659", size = 73736 },
-]
-
-[[package]]
-name = "starlette-admin"
-version = "0.15.1"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "jinja2" },
-    { name = "python-multipart" },
-    { name = "starlette" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/51/84/bb719df244cb8b720a81bd88aff18ababceb1f3e9afaf44563ba61b2d1b4/starlette_admin-0.15.1.tar.gz", hash = "sha256:beccdb8695ecadc9f314e0b5afd2b04e067538e8273d0c3199b671198b5ee43e", size = 2098915 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/80/41/8f0e354441aae2fc843e7fafb7e64fbfef541f3ac2d238c7b05b1136ffd0/starlette_admin-0.15.1-py3-none-any.whl", hash = "sha256:a832e8a0e8a16c9c3f2012ddf352867ad8e730f21192caa85225798091cba130", size = 2169980 },
 ]
 
 [[package]]
@@ -888,4 +890,16 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/71/57/1616c8274c3442d802621abf5deb230771c7a0fec9414cb6763900eb3868/uvicorn-0.37.0.tar.gz", hash = "sha256:4115c8add6d3fd536c8ee77f0e14a7fd2ebba939fed9b02583a97f80648f9e13", size = 80367 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/85/cd/584a2ceb5532af99dd09e50919e3615ba99aa127e9850eafe5f31ddfdb9a/uvicorn-0.37.0-py3-none-any.whl", hash = "sha256:913b2b88672343739927ce381ff9e2ad62541f9f8289664fa1d1d3803fa2ce6c", size = 67976 },
+]
+
+[[package]]
+name = "wtforms"
+version = "3.1.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "markupsafe" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/6a/c7/96d10183c3470f1836846f7b9527d6cb0b6c2226ebca40f36fa29f23de60/wtforms-3.1.2.tar.gz", hash = "sha256:f8d76180d7239c94c6322f7990ae1216dae3659b7aa1cee94b6318bdffb474b9", size = 134705 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/18/19/c3232f35e24dccfad372e9f341c4f3a1166ae7c66e4e1351a9467c921cc1/wtforms-3.1.2-py3-none-any.whl", hash = "sha256:bf831c042829c8cdbad74c27575098d541d039b1faa74c771545ecac916f2c07", size = 145961 },
 ]

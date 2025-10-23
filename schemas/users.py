@@ -1,5 +1,5 @@
 from pydantic import BaseModel, EmailStr, Field, model_validator
-
+from typing import Optional
 from utils.security import get_password_hash
 
 
@@ -40,3 +40,9 @@ class UserOutSchema(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+class UserFilterSchema(BaseModel):
+    name: Optional[str] = None
+    role: Optional[str] = None
+    is_active: Optional[bool] = None

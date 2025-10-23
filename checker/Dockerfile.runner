@@ -1,0 +1,14 @@
+# Dockerfile.runner
+FROM python:3.14-alpine
+
+# create a non-root user
+RUN useradd --create-home --shell /bin/bash crun_test
+WORKDIR /home/crun_test
+USER crun_test
+
+# make /workspace the place where code will be mounted
+RUN mkdir /home/crun_test/workspace
+WORKDIR /home/crun_test/crun_test
+
+# keep python available (no extra deps here)
+ENTRYPOINT ["python3", "main.py"]

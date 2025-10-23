@@ -1,14 +1,15 @@
 from datetime import datetime
 
-from core.config import settings
 from slugify import slugify
 from sqlalchemy import BigInteger, DateTime, String, and_
 from sqlalchemy import delete as sqlalchemy_delete
 from sqlalchemy import exists, func, or_, select, text
 from sqlalchemy import update as sqlalchemy_update
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
+from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine, AsyncSession
 from sqlalchemy.orm import DeclarativeBase, Mapped, declared_attr, mapped_column, selectinload
+
+from core.config import settings
 
 
 # ----------------------------- ABSTRACTS ----------------------------------
@@ -136,6 +137,14 @@ class Base(DeclarativeBase, AbstractClass):
     def __tablename__(self) -> str:
         name = self.__name__.lower()
         return name + 's'
+
+    def __str__(self):
+        if hasattr(self, 'name'):
+            return self.name
+        if hasattr(self, 'title'):
+            return self.title
+
+        return str(self.id)
 
 
 class UUIDBaseModel(Base):
