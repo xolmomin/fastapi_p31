@@ -1,10 +1,11 @@
-from datetime import datetime, UTC, timedelta
+import re
+from datetime import UTC, datetime, timedelta
 from typing import Annotated
 
 from fastapi import HTTPException
 from fastapi.params import Depends
 from fastapi.security import HTTPBearer
-from jose import jwt, exceptions
+from jose import exceptions, jwt
 from passlib.context import CryptContext
 from starlette import status
 
@@ -14,6 +15,10 @@ from database import User
 pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 
 http_bearer = HTTPBearer()
+
+
+def is_email(value: str) -> bool:
+    return re.match(r"^[\w\.-]+@[\w\.-]+\.\w+$", value) is not None
 
 
 def create_access_token(data: dict, expires_delta: timedelta | None = None):
@@ -78,7 +83,18 @@ async def get_current_user(token: Annotated[str, Depends(http_bearer)]) -> User:
     if not user_id:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
 
-    user = await User.get(User.id == user_id)
+    try:
+        login: str = encoded_jwt["sub"]
+    except KeyError:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token"
+        )
+
+    if is_email(login):
+        user = await User.get(User.email == login)
+    else:
+        user = await User.get(User.username == login)
+
     if user:
         return user
 

@@ -1,9 +1,10 @@
-from pydantic import BaseModel, Field, EmailStr, model_validator
+from pydantic import BaseModel, EmailStr, Field, model_validator
 
 from utils.security import get_password_hash
 
 
 class LoginSchema(BaseModel):
+    login: EmailStr | str
     password: str = Field(...)
 
 
@@ -13,19 +14,29 @@ class RegisterSchema(BaseModel):
     confirm_password: str = Field(...)
     email: EmailStr = Field(...)
 
-    @model_validator(mode='after')
+    @model_validator(mode="after")
     def check_passwords_match(self):
         if self.password != self.confirm_password:
-            raise ValueError('Passwords do not match')
+            raise ValueError("Passwords do not match")
 
-        self.password = get_password_hash(self.password)
-        return self.model_dump(exclude={'confirm_password'})
+        hashed = get_password_hash(self.password)
+        self.password = hashed
+        self.confirm_password = hashed
+        return self
 
-    # async def async_validate(self): # TODO
-    #     errors = []
-    #
-    #     if await User.exists(User.email == self.email):
-    #         errors.append(ErrorWrapper(ValueError("Email already exists"), loc="email"))
-    #
-    #     if await User.exists(User.username == self.username):
-    #         errors.append(ErrorWrapper(ValueError("Username already exists"), loc="username"))
+
+class TokenSchema(BaseModel):
+    access_token: str
+    refresh_token: str
+    token_type: str = "Bearer"
+
+
+class UserOutSchema(BaseModel):
+    id: int = Field(...)
+    username: str = Field(...)
+    email: EmailStr = Field(...)
+    first_name: str | None = Field(...)
+    last_name: str | None = Field(...)
+
+    class Config:
+        from_attributes = True

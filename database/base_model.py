@@ -1,13 +1,14 @@
 from datetime import datetime
 
-from slugify import slugify
-from sqlalchemy import DateTime, func, text, BigInteger, delete as sqlalchemy_delete, \
-    update as sqlalchemy_update, select, or_, and_, String, event, exists
-from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, declared_attr, selectinload
-
 from core.config import settings
+from slugify import slugify
+from sqlalchemy import BigInteger, DateTime, String, and_
+from sqlalchemy import delete as sqlalchemy_delete
+from sqlalchemy import exists, func, or_, select, text
+from sqlalchemy import update as sqlalchemy_update
+from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
+from sqlalchemy.orm import DeclarativeBase, Mapped, declared_attr, mapped_column, selectinload
 
 
 # ----------------------------- ABSTRACTS ----------------------------------

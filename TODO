@@ -1,20 +1,20 @@
 
 
 
-# homework
+# Task
 0. alembic async + base modellar yozamiz +
 1. Tag modeli yozish +
-2. register (password argon2) + login apilarini chiqarish
-3. get-me apisini chiqarish
-4. User bilan problem modelini togrilash
-5. flake8, isort
-6. faker
+2. register (password argon2)+, login apilarini chiqarish +
+3. get-me apisini chiqarish +
+4. User bilan problem modelini togrilash +
+5. flake8+, isort+
+6. faker (fixtures)
+7. crud amallari adminka orqali
+8. first_name, last_name change api
+9. universal pagination, search, filter
 
 
-Homework
-1. login, get-me
-2. User bilan problem modelini togrilash
-3. flake8, isort
+
 4. problems listda
 pagination (page, page_size)
 name va description boyicha search

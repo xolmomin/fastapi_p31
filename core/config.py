@@ -1,5 +1,4 @@
 from pydantic import Field
-
 from pydantic_settings import BaseSettings
 
 
@@ -12,6 +11,8 @@ class Settings(BaseSettings):
 
     JWT_SECRET_KEY: str = Field(...)
     JWT_ALGORITHM: str = Field(...)
+    JWT_ACCESS_TOKEN_EXPIRE_TIME: int = Field(...)
+    JWT_REFRESH_TOKEN_EXPIRE_TIME: int = Field(...)
 
     @property
     def postgresql_url(self) -> str:
