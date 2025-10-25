@@ -1,0 +1,149 @@
+[
+  {
+    "id": 1,
+    "slug": "two-sum",
+    "name": "Two Sum",
+    "difficulty": "easy",
+    "description": "Given an integer array nums and a target value, return indices of two numbers that add up to the target."
+  },
+  {
+    "id": 2,
+    "slug": "reverse-integer",
+    "name": "Reverse Integer",
+    "difficulty": "medium",
+    "description": "Reverse digits of a 32-bit signed integer. Return 0 if overflow occurs."
+  },
+  {
+    "id": 3,
+    "slug": "palindrome-number",
+    "name": "Palindrome Number",
+    "difficulty": "easy",
+    "description": "Determine whether an integer is a palindrome without converting to a string."
+  },
+  {
+    "id": 4,
+    "slug": "valid-parentheses",
+    "name": "Valid Parentheses",
+    "difficulty": "easy",
+    "description": "Check if parentheses/brackets in a string are valid."
+  },
+  {
+    "id": 5,
+    "slug": "merge-two-sorted-lists",
+    "name": "Merge Two Sorted Lists",
+    "difficulty": "easy",
+    "description": "Merge two sorted linked lists and return the new sorted list."
+  },
+  {
+    "id": 6,
+    "slug": "remove-duplicates-from-sorted-array",
+    "name": "Remove Duplicates from Sorted Array",
+    "difficulty": "easy",
+    "description": "Remove duplicates from sorted array in-place and return new length."
+  },
+  {
+    "id": 7,
+    "slug": "search-insert-position",
+    "name": "Search Insert Position",
+    "difficulty": "easy",
+    "description": "Return the index where target should be inserted."
+  },
+  {
+    "id": 8,
+    "slug": "maximum-subarray",
+    "name": "Maximum Subarray",
+    "difficulty": "medium",
+    "description": "Find the contiguous subarray with the largest sum."
+  },
+  {
+    "id": 9,
+    "slug": "climbing-stairs",
+    "name": "Climbing Stairs",
+    "difficulty": "easy",
+    "description": "Count number of distinct ways to climb n stairs."
+  },
+  {
+    "id": 10,
+    "slug": "binary-tree-inorder-traversal",
+    "name": "Binary Tree Inorder Traversal",
+    "difficulty": "easy",
+    "description": "Return inorder traversal of a binary tree without recursion."
+  },
+  {
+    "id": 11,
+    "slug": "symmetric-tree",
+    "name": "Symmetric Tree",
+    "difficulty": "easy",
+    "description": "Check whether a binary tree is symmetric."
+  },
+  {
+    "id": 12,
+    "slug": "min-stack",
+    "name": "Min Stack",
+    "difficulty": "medium",
+    "description": "Design stack supporting push/pop/min in constant time."
+  },
+  {
+    "id": 13,
+    "slug": "rotate-array",
+    "name": "Rotate Array",
+    "difficulty": "medium",
+    "description": "Rotate array to the right by k steps."
+  },
+  {
+    "id": 14,
+    "slug": "number-of-islands",
+    "name": "Number of Islands",
+    "difficulty": "medium",
+    "description": "Count number of islands in a grid using DFS/BFS."
+  },
+  {
+    "id": 15,
+    "slug": "house-robber",
+    "name": "House Robber",
+    "difficulty": "medium",
+    "description": "Maximum money robbed without robbing adjacent houses."
+  },
+  {
+    "id": 16,
+    "slug": "word-break",
+    "name": "Word Break",
+    "difficulty": "medium",
+    "description": "Check if string can be segmented into dictionary words."
+  },
+  {
+    "id": 17,
+    "slug": "binary-search",
+    "name": "Binary Search",
+    "difficulty": "easy",
+    "description": "Search for a target using binary search algorithm."
+  },
+  {
+    "id": 18,
+    "slug": "longest-palindromic-substring",
+    "name": "Longest Palindromic Substring",
+    "difficulty": "medium",
+    "description": "Find the longest palindromic substring."
+  },
+  {
+    "id": 19,
+    "slug": "median-of-two-sorted-arrays",
+    "name": "Median of Two Sorted Arrays",
+    "difficulty": "hard",
+    "description": "Find median of two sorted arrays in logarithmic time."
+  },
+  {
+    "id": 20,
+    "slug": "regular-expression-matching",
+    "name": "Regular Expression Matching",
+    "difficulty": "hard",
+    "description": "Regex engine supporting '.' and '*'."
+  },
+  {
+    "id": 35,
+    "slug": "search-insert-position",
+    "name": "Search Insert Position",
+    "difficulty": "easy",
+    "description": "Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.\n\nYou must write an algorithm with O(log n) runtime complexity."
+  }
+]

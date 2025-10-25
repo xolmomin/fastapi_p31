@@ -8,20 +8,24 @@
 3. get-me apisini chiqarish +
 4. User bilan problem modelini togrilash +
 5. flake8+, isort+
-6. faker - fixtures [20ta] +
-test fixture - (testing uchun)
-data seed fixture - (initial data)
-region, district
-7. crud amallari adminka orqali +
-8. first_name, last_name change api
-9. universal pagination, search, filter, order by
+6. faker generating data +
+data seed fixtures [20tadan] (initial data) +
+
+8. crud amallari adminka orqali +
+9. first_name, last_name change api +
+10. universal pagination, search, filter, order by
 
 
 # Homework
-1. first_name, last_name change api
 2. data seed fixture (20ta)
 3. api/v1/problemset/two-sum/submit
 a, b = map(int, input().split())
 print(a + b)
 
 checker - (crun orqali kodlarni run qilish tekshirish)
+
+
+
+task
+1. topic, language larni fixture orqali qoshish
+2. faker orqali userdan 100ta qoshish

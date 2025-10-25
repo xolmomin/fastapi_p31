@@ -46,3 +46,8 @@ class UserFilterSchema(BaseModel):
     name: Optional[str] = None
     role: Optional[str] = None
     is_active: Optional[bool] = None
+
+
+class UserProfileUpdateSchema(BaseModel):
+    first_name: str | None = Field(...)
+    last_name: str | None = Field(...)

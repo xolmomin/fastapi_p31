@@ -23,11 +23,82 @@ class AbstractClass:
             await db.rollback()
 
     @classmethod
-    async def create(cls, **kwargs):  # Create
+    async def create(cls, **kwargs):
+        # Agar ID berilgan bo‘lsa, duplicate check:
+        obj_id = kwargs.get("id")
+        if obj_id is not None:
+            query = select(cls).where(cls.id == obj_id)
+            exists = (await db.execute(query)).scalar_one_or_none()
+            if exists:
+                return exists  # agar mavjud bo‘lsa yangi yaratmaydi
+
         object_ = cls(**kwargs)
         db.add(object_)
-        await cls.commit()
+        await db.commit()
         return object_
+
+    @classmethod
+    async def values(
+            cls,
+            *fields,
+            flat: bool = False,
+            use_or: bool = False,
+            **filters,
+    ):
+        """
+        Django values() / values_list() clone:
+
+        Examples:
+            await User.values("id", "name")
+            ➝ [{'id': 1, 'name': 'Ali'}, ...]
+
+            await User.values("email", flat=True)
+            ➝ ['test@gmail.com', ...]
+
+            await User.values(User.age > 18, name="Ali")
+        """
+
+        criteria = []
+
+        # Filters from **kwargs
+        if filters:
+            criteria.extend([getattr(cls, k) == v for k, v in filters.items()])
+
+        # Split SQLAlchemy expressions vs column names
+        column_fields = []
+        for f in fields:
+            if isinstance(f, str):  # column name string
+                column_fields.append(getattr(cls, f))
+            else:
+                criteria.append(f)
+
+        # If no fields passed -> select entire row
+        if column_fields:
+            query = select(*column_fields)
+        else:
+            query = select(cls)
+
+        # Apply criteria
+        if criteria:
+            op = or_ if use_or else and_
+            query = query.where(op(*criteria))
+
+        result = await db.execute(query)
+
+        rows = result.all()
+
+        # ✅ Flat values_list("column", flat=True) support
+        if flat and len(column_fields) == 1:
+            return [r[0] for r in rows]
+
+        # ✅ Dict result like Django values()
+        if column_fields:
+            return [
+                {col.key: val for col, val in zip(column_fields, row)}
+                for row in rows
+            ]
+
+        return [row[0].__dict__ for row in rows]
 
     @classmethod
     async def update(cls, id_, **kwargs):
