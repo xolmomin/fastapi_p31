@@ -11,7 +11,7 @@ from routers import router
 @asynccontextmanager
 async def lifespan(app_: FastAPI):
     print('project ishga tushdi')
-    await load_problems_from_json(['problems', 'topics'])
+    # await load_problems_from_json(['problems', 'topics'])
 
     yield
     print('project toxtadi')

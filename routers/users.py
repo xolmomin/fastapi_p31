@@ -1,7 +1,4 @@
 from fastapi import APIRouter, Depends
-from fastapi.params import Query
-from schemas import UserFilterSchema
-from sqlalchemy.ext.asyncio import AsyncSession
 from starlette.responses import Response
 
 from database import User
@@ -9,7 +6,6 @@ from database import User
 from schemas import TokenSchema, UserOutSchema, RegisterSchema, LoginSchema
 from schemas.base_schema import ResponseSchema
 from schemas.users import UserProfileUpdateSchema
-from utils.pagination import paginate_filter_sort
 from utils.security import get_current_user, create_access_token, create_refresh_token
 from utils.validators import check_username_and_password
 
@@ -79,6 +75,4 @@ async def register_user(data: RegisterSchema):
 async def login_user(response: Response, data: LoginSchema = Depends(check_username_and_password)):
     access_token = create_access_token(data={"sub": data.login})
     refresh_token = create_refresh_token(data={"sub": data.login})
-    return ResponseSchema(
-        data=TokenSchema(access_token=access_token, refresh_token=refresh_token)
-    )
+    return ResponseSchema(data=TokenSchema(access_token=access_token, refresh_token=refresh_token))

@@ -1,20 +1,18 @@
-# judge_simple.py
-import os
+import difflib
 import shutil
 import subprocess
 import tempfile
 import textwrap
 from pathlib import Path
-import difflib
-import sys
 
 DOCKER_IMAGE = "crun-python-runner"  # build from Dockerfile.runner
 TIMEOUT = 2.0  # seconds wall-clock
 MEMORY = "128m"
 
+from database import Problem
+
 
 def normalize_output(s: str):
-    # simple normalization: strip trailing whitespace and normalize newlines
     return "\n".join(line.rstrip() for line in s.strip().splitlines())
 
 
@@ -81,46 +79,26 @@ def compare_output(user_out: str, expected_out: str):
         return {"result": "WA", "diff": diff}
 
 
-if __name__ == "__main__":
-    sample = textwrap.dedent("""
-l = map(int, input().split())    
-print(*filter(lambda i: i % 2 == 0, l))
+async def check_code(problem_id: int, code: str):
+    print("Checking ...")
+    code = textwrap.dedent(code)
+    problem = await Problem.get(Problem.id == problem_id, relationship=Problem.examples)
+
+    for testcase in problem.examples:
+        print(f"""TestCase {testcase.order_number}
+    Input: {testcase.input}
+    Output: {testcase.output}
     """)
 
-    base = Path(__file__).parent
-    input_files = sorted(base.glob("input*.txt"))
-    output_files = sorted(base.glob("output*.txt"))
+        progress_submission = run_submission(code, testcase.input)
 
-    if len(input_files) != len(output_files):
-        print("❌ Mismatch between number of input and output files!")
-        sys.exit(1)
-
-    total = len(input_files)
-    passed = 0
-
-    for idx, (inp_path, out_path) in enumerate(zip(input_files, output_files), start=1):
-        with open(inp_path) as f:
-            inp = f.read()
-        with open(out_path) as f:
-            expected = f.read()
-
-        runr = run_submission(sample, inp)
-
-        if runr["verdict"] != "OK":
-            print(f"Runtime Error (Test #{idx})")
+        if progress_submission["verdict"] != "OK":
+            print(f"Runtime Error (Test #{testcase.order_number})")
             break
 
-        cmp = compare_output(runr["stdout"], expected)
+        cmp = compare_output(progress_submission["stdout"], testcase.output)
         if cmp.get("result") == "AC":
-            print(f"Accepted (Test #{idx})")
-            passed += 1
+            print(f"Accepted (Test #{testcase.order_number})")
         else:
-            print(f"Wrong Answer (Test #{idx})")
+            print(f"Wrong Answer (Test #{testcase.order_number})")
             break
-
-    print()
-    print(f"Passed {passed}/{total} test cases.")
-    if passed == total:
-        print("Final Verdict: ✅ Accepted")
-    else:
-        print("Final Verdict: ❌ Wrong Answer")

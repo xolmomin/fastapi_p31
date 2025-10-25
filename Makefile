@@ -15,3 +15,6 @@ current-mig:
 
 flake8:
 	flake8 .
+
+docker_build:
+	 docker build -t crun-python-runner -f checker/Dockerfile.runner .

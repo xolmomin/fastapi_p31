@@ -51,7 +51,7 @@ class Submission(IDBaseModel, CreatedBaseModel):
         RUNTIME_ERROR = 'runtime_error'
         COMPILE_ERROR = 'compile_error'
 
-    difficulty: Mapped[Status] = mapped_column(SqlEnum(Status, name="status_enum"))
+    status: Mapped[Status] = mapped_column(SqlEnum(Status, name="status_enum"))
     problem_id: Mapped[int] = mapped_column(ForeignKey('problems.id', ondelete='CASCADE'))
     problem: Mapped['Problem'] = relationship('Problem', back_populates='submissions')
 
@@ -70,6 +70,6 @@ class Example(IDBaseModel):
 
     input: Mapped[str] = mapped_column(String)
     output: Mapped[str] = mapped_column(String)
-    explanation: Mapped[str] = mapped_column(String)
+    explanation: Mapped[str] = mapped_column(String, nullable=True)
     problem_id: Mapped[int] = mapped_column(ForeignKey('problems.id', ondelete='CASCADE'))
     problem: Mapped['Problem'] = relationship('Problem', back_populates='examples')

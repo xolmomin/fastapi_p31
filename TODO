@@ -17,15 +17,11 @@ data seed fixtures [20tadan] (initial data) +
 
 
 # Homework
-2. data seed fixture (20ta)
+0. register qilgandan, pochtaga xabar borishi (verify link kelishi kerak pochtaga)
+1. submission ni fixtures ga qoshish
+2. submission api listini chiqarish (pagination va filter boyicha)
 3. api/v1/problemset/two-sum/submit
 a, b = map(int, input().split())
 print(a + b)
 
 checker - (crun orqali kodlarni run qilish tekshirish)
-
-
-
-task
-1. topic, language larni fixture orqali qoshish
-2. faker orqali userdan 100ta qoshish

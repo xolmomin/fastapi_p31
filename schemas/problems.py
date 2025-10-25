@@ -1,3 +1,4 @@
+from datetime import datetime
 from enum import Enum
 
 from pydantic import BaseModel, Field
@@ -6,6 +7,16 @@ from pydantic import BaseModel, Field
 class TopicReadSchema(BaseModel):
     id: int = Field(...)
     name: str = Field(...)
+
+
+class SubmissionReadSchema(BaseModel):
+    id: int = Field(...)
+    problem_id: int = Field(...)
+    status: str = Field(...)
+    language_id: str = Field(...)
+    runtime: int = Field(...)
+    memory: int = Field(...)
+    created_at: datetime = Field(...)
 
 
 class TopicCreateSchema(BaseModel):
